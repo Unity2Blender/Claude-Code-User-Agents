@@ -1,0 +1,27 @@
+# Runtime and session data
+debug/
+file-history/
+history.jsonl
+session-env/
+shell-snapshots/
+statsig/
+todos/
+plans/
+
+# IDE and project-specific data
+ide/
+projects/
+
+# Config and plugins (runtime)
+config/
+mcp-servers/
+plugins/
+
+# Local settings (may contain sensitive data)
+settings.local.json
+
+# Keep these files/directories:
+# - commands/          (custom commands)
+# - agents/            (custom agents - future)
+# - CLAUDE.md          (global instructions)
+# - settings.json      (global settings)

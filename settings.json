@@ -1,0 +1,9 @@
+{
+  "enabledPlugins": {
+    "code-refactoring@claude-code-workflows": true
+  },
+  "alwaysThinkingEnabled": true,
+  "permissions": {
+    "defaultMode": "plan"
+  }
+}

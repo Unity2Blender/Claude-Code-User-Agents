@@ -1,0 +1,3 @@
+- Once a plan has been implemented or Features implemented, Git commit & push with a brief message of changes (Like a Hook on Stop or SessionEnd of planning and implementation)
+- Use the Playwright MCP when automating browser-based tasks like UI testing, web crawling, or form submissions through scripted interactions, Avoid using it for static documentation markdown updates, or tasks that don’t require real-time browser automation or DOM interaction, Like Firebase Function triggers or Backend APIs in general.
+- When a change adds or alters a significant module/feature in any directory, create or update a CLAUDE.md in that directory or sub-directory.
