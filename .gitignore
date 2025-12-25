@@ -25,3 +25,4 @@ settings.local.json
 # - agents/            (custom agents - future)
 # - CLAUDE.md          (global instructions)
 # - settings.json      (global settings)
+stats-cache.json
