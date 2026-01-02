@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lastComputedDate": "2025-12-26",
+  "lastComputedDate": "2025-12-31",
   "dailyActivity": [
     {
       "date": "2025-11-12",
@@ -217,6 +217,30 @@
       "messageCount": 847,
       "sessionCount": 11,
       "toolCallCount": 250
+    },
+    {
+      "date": "2025-12-27",
+      "messageCount": 804,
+      "sessionCount": 15,
+      "toolCallCount": 232
+    },
+    {
+      "date": "2025-12-28",
+      "messageCount": 466,
+      "sessionCount": 4,
+      "toolCallCount": 141
+    },
+    {
+      "date": "2025-12-29",
+      "messageCount": 1319,
+      "sessionCount": 16,
+      "toolCallCount": 400
+    },
+    {
+      "date": "2025-12-31",
+      "messageCount": 1171,
+      "sessionCount": 11,
+      "toolCallCount": 337
     }
   ],
   "dailyModelTokens": [
@@ -436,6 +460,30 @@
       "tokensByModel": {
         "claude-opus-4-5-20251101": 145796
       }
+    },
+    {
+      "date": "2025-12-27",
+      "tokensByModel": {
+        "claude-opus-4-5-20251101": 143194
+      }
+    },
+    {
+      "date": "2025-12-28",
+      "tokensByModel": {
+        "claude-opus-4-5-20251101": 85180
+      }
+    },
+    {
+      "date": "2025-12-29",
+      "tokensByModel": {
+        "claude-opus-4-5-20251101": 343667
+      }
+    },
+    {
+      "date": "2025-12-31",
+      "tokensByModel": {
+        "claude-opus-4-5-20251101": 297990
+      }
     }
   ],
   "modelUsage": {
@@ -449,17 +497,17 @@
       "contextWindow": 0
     },
     "claude-opus-4-5-20251101": {
-      "inputTokens": 2906213,
-      "outputTokens": 6927108,
-      "cacheReadInputTokens": 2639524314,
-      "cacheCreationInputTokens": 196346845,
+      "inputTokens": 3196429,
+      "outputTokens": 7506923,
+      "cacheReadInputTokens": 2809798956,
+      "cacheCreationInputTokens": 213476786,
       "webSearchRequests": 0,
       "costUSD": 0,
       "contextWindow": 0
     }
   },
-  "totalSessions": 501,
-  "totalMessages": 66266,
+  "totalSessions": 547,
+  "totalMessages": 70026,
   "longestSession": {
     "sessionId": "f991482f-695e-4642-9f2c-c0c70f1cde9f",
     "duration": 300161155,
@@ -476,19 +524,19 @@
     "7": 4,
     "8": 9,
     "9": 23,
-    "10": 30,
-    "11": 33,
+    "10": 32,
+    "11": 37,
     "12": 22,
     "13": 14,
-    "14": 32,
-    "15": 43,
-    "16": 53,
-    "17": 21,
-    "18": 17,
-    "19": 26,
-    "20": 35,
-    "21": 17,
-    "22": 36,
-    "23": 33
+    "14": 36,
+    "15": 44,
+    "16": 57,
+    "17": 24,
+    "18": 19,
+    "19": 31,
+    "20": 38,
+    "21": 20,
+    "22": 43,
+    "23": 41
   }
 }
