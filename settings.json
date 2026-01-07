@@ -3,7 +3,8 @@
     "defaultMode": "plan"
   },
   "enabledPlugins": {
-    "code-refactoring@claude-code-workflows": true
+    "code-refactoring@claude-code-workflows": true,
+    "ralph-wiggum@claude-code-plugins": true
   },
   "alwaysThinkingEnabled": true
 }
