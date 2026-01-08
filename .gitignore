@@ -26,3 +26,4 @@ settings.local.json
 # - CLAUDE.md          (global instructions)
 # - settings.json      (global settings)
 stats-cache.json
+cache/changelog.md
