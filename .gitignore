@@ -8,6 +8,8 @@ statsig/
 todos/
 plans/
 paste-cache/
+tasks/
+telemetry/
 
 # IDE and project-specific data
 ide/
