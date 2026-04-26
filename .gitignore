@@ -13,7 +13,13 @@ telemetry/
 
 # IDE and project-specific data
 ide/
-projects/
+# Ignore all generated Claude project state by default.
+projects/*
+# Allowlist only billing_flutter_plugins memory.
+!projects/-Users-murtazazaki-Projects-billing-flutter-plugins/
+projects/-Users-murtazazaki-Projects-billing-flutter-plugins/*
+!projects/-Users-murtazazaki-Projects-billing-flutter-plugins/memory/
+!projects/-Users-murtazazaki-Projects-billing-flutter-plugins/memory/**
 
 # Config and plugins (runtime)
 config/

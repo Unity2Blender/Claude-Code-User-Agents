@@ -1,10 +1,30 @@
 {
+  "env": {
+    "ENABLE_LSP_TOOL": "1"
+  },
   "permissions": {
-    "defaultMode": "plan"
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/log-skill.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
   },
   "enabledPlugins": {
-    "code-refactoring@claude-code-workflows": true,
-    "ralph-wiggum@claude-code-plugins": true
+    "plugin-dev@claude-code-plugins": true
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "xhigh",
+  "agentPushNotifEnabled": true,
+  "voiceEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
