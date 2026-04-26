@@ -15,13 +15,49 @@
      - `database` sessions → data integrity, query performance
      - `ui-implementation` sessions → UX simplicity, fewer moving parts
      - `ui-research` sessions → design system alignment, accessibility
-     - `business` sessions → speed-to-market, competitive advantage
      - `general` / unknown → simplicity & maintainability
 
   **Option Format — every option description MUST use this compact formula:**
   > `Best for [specific case]. [1-line why it suits]. Trade-off: [1-line downside].`
 
   **Label Convention:** First option label ends with `(Recommended)`. Other options are ordered by descending fit.
+
+Markdown Workflow Example (per user request)
+
+ ### Interview Round N
+
+ **Preamble (1–2 sentences):** State the recommended option and the ranking criteria. Reference the user's
+ CLAUDE.md priority weights:
+ 1. Correctness & reliability
+ 2. Bundle size & performance
+ 3. Context-adaptive third priority (per `.claude/.session-context`)  
+     ---
+     Markdown Workflow Example (per user request, preserved from v2)
+                                     
+     ### Interview Round N
+               
+     **Preamble (1–2 sentences):** State the recommended option and the ranking criteria. Reference the user's
+     CLAUDE.md priority weights:                   
+     1. Correctness & reliability                                                                     
+     2. Bundle size & performance
+     3. Context-adaptive third priority (per `.claude/.session-context`)
+                                     
+     **AskUserQuestion option formula:**                                        
+     {
+       "question": "<full question, ends with ?>",
+       "header": "<≤12 char chip label>",
+       "multiSelect": false,
+       "options": [                                                                                                
+         {                                                                                                         
+           "label": "Recommended option (Recommended)",
+           "description": "Best for [specific case]. [1-line why it suits]. Trade-off: [1-line downside]."
+         },                                                                                   
+         {                                                                                           
+           "label": "Second-best option",
+           "description": "Best for [different case]. [why]. Trade-off: [downside]."                              
+         }          
+       ]
+     }
 
   **Example:**
   ```

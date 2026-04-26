@@ -58,6 +58,7 @@ Keep this file compact. Move subsystem detail, incident narratives, and complete
 
 ## Database, Security, And Secrets
 
+- P0 HARD - Prod is permanent, local is disposable. Local-Docker recovery plans must not bundle prod-touching steps. Every linked-mutating command needs an explicit user gate even if earlier local steps were approved. Asymmetric lifespans → asymmetric risk appetite. Details: `feedback_prod_permanent_local_disposable.md`.
 - P0 HARD - Never edit deployed migrations. Add a new forward migration. Details: `feedback_never_edit_migrations.md`.
 - P0 HARD - `supabase db push --linked --dry-run` validates parsing only. Dependency failures surface during apply; iterate carefully and document SQLSTATE fixes. Details: `feedback_iterate_db_push_linked_pattern.md`.
 - P0 HARD - Before `DROP COLUMN`, enumerate and explicitly handle constraints, triggers, RPCs, views, indexes, FKs, and generated expressions. Details: `feedback_drop_column_cascade_audit.md`.

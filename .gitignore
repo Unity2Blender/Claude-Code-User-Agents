@@ -29,10 +29,24 @@ plugins/
 # Local settings (may contain sensitive data)
 settings.local.json
 
+# Local runtime noise (auto-generated, machine-local)
+.DS_Store
+backups/
+cache/
+image-cache/
+logs/
+sessions/
+usage-data/
+mcp-needs-auth-cache.json
+
+# Machine-local user assets (not portable; intentionally untracked)
+hooks/
+scripts/
+skills/
+
 # Keep these files/directories:
 # - commands/          (custom commands)
 # - agents/            (custom agents - future)
 # - CLAUDE.md          (global instructions)
 # - settings.json      (global settings)
 stats-cache.json
-cache/changelog.md
