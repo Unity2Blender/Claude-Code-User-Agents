@@ -83,3 +83,4 @@ Keep this file compact. Move subsystem detail, incident narratives, and complete
 - P1 DEFAULT - Riverpod provider-chain tests use `ProviderContainer`, dispose containers, and override providers correctly.
 - P1 DEFAULT - Prefer Dart LSP for symbol navigation and Grep/Glob for text, string, comment, and file-pattern search.
 - P2 CONTEXTUAL - Read subsystem memory files only when touching that subsystem; do not preload every gotcha into active planning.
+- [tutorials_admin Round-3 status](project_tutorials_admin_seamless_round3_status.md) — 9 of 10 commits shipped 2026-04-26; deferred items + invariants pinned by tests
