@@ -46,6 +46,7 @@ Keep this file compact. Move subsystem detail, incident narratives, and complete
 - P1 DEFAULT - After audit corrections, rewrite the canonical plan inline. Do not append contradictory "Audit Amendments" sections. Details: `feedback_canonical_single_sequence_plans.md`.
 - P1 DEFAULT - If the user provides a structured audit with locked decisions/directives, adopt it rather than re-interviewing. Details: `feedback_user_led_parallel_audits.md`.
 - P1 DEFAULT - Keep AskUserQuestion interviews focused: 2-3 rounds, 8-12 high-leverage questions unless the user explicitly asks for more. Details: `feedback_interview_pacing.md`.
+- P0 HARD - Before relocating, renaming, or adding rule IDs in skill CSVs, grep the canonical CSV files at HEAD. Don't propose IDs that already exist or count files from earlier-session synthesis. Don't propose new pump/time/lifecycle/state-discipline rules without first checking `FLAKY-*` / `TASTE-*` / `CHAIN-*` for existing coverage. Rule-reference linters and coverage checkers are distinct concerns — don't conflate. Details: `feedback_verify_rule_ids_at_head.md`.
 
 ## Rollout And Observability
 
@@ -66,6 +67,8 @@ Keep this file compact. Move subsystem detail, incident narratives, and complete
 - P0 HARD - Service role keys are deprecated for new code. Do not introduce new service-role usage without explicit user approval and documented containment. Details: `feedback_service_role_key_deprecated.md`.
 - P0 HARD - Cloudflare Dashboard is the source of truth for secrets. Deploy scripts must not bulk-put/delete dashboard secrets. Details: `feedback_dashboard_is_source_of_truth_strict.md`.
 - P0 HARD - Chaos/canary experiments never run on Razorpay, subscription, GST, webhook, or pg_net billing paths. Details: `feedback_chaos_never_on_billing_paths.md`.
+- P1 DEFAULT - Canonical Supabase migration sentinel is `supabase/migrations/LATEST_MIGRATION` (root copy is stale). Read before proposing a number; create new files via `make migration-new NAME=...`. Details: `reference_supabase_migrations_latest_sentinel.md`.
+- P1 DEFAULT - Token refresh paths must call `SupabaseRestClient.instance.refreshAuth()` (singleton). `supabaseRestProvider` and `postgrestProvider` throw `StateError` on null JWT (Layer 1.5 transport guard at `supabase_provider.dart:142-159`). Details: `feedback_singleton_for_token_refresh_not_provider.md`.
 
 ## UI And Product Surfaces
 
@@ -83,4 +86,9 @@ Keep this file compact. Move subsystem detail, incident narratives, and complete
 - P1 DEFAULT - Riverpod provider-chain tests use `ProviderContainer`, dispose containers, and override providers correctly.
 - P1 DEFAULT - Prefer Dart LSP for symbol navigation and Grep/Glob for text, string, comment, and file-pattern search.
 - P2 CONTEXTUAL - Read subsystem memory files only when touching that subsystem; do not preload every gotcha into active planning.
+- P1 DEFAULT - `withAuthRetry` callers must read `postgrestProvider` INSIDE the retry closure. Capturing the client outside breaks Strategy 2 client recreation (force-recreate disposes the old PostgrestClient). Details: `feedback_withauthretry_read_provider_inside_closure.md`.
+- P1 DEFAULT - 42501 retry policy is call-site opt-in via `retryablePermissionDeniedFunctions` parameter on `withAuthRetry`. No global blanket-retry of "permission denied for function". Details: `feedback_42501_retry_policy_call_site_opt_in.md`.
 - [tutorials_admin Round-3 status](project_tutorials_admin_seamless_round3_status.md) — 9 of 10 commits shipped 2026-04-26; deferred items + invariants pinned by tests
+- [Two-pipe discount accounting](project_payment_two_pipe_discount.md) — global vs ad-hoc split; 000432 dropped F1; balance-trigger gap closed by queued 000434
+- [Invoice allocation triggers](project_invoice_allocation_trigger_facts.md) — trg_fn_validate_invoice_allocation is BEFORE INSERT; chk_payment_allocations_allocation_valid rejects (0,0); RPC ORDER BY invoice_id ASC
+- [pgTAP lock-order via pg_proc.prosrc](feedback_pgtap_lock_order_structural.md) — single-session pgTAP can't prove concurrent lock order; assert ORDER BY pattern in source instead
