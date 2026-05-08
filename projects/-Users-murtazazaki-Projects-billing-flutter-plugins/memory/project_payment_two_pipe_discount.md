@@ -8,10 +8,21 @@ The payments domain has a two-pipe discount model:
 1. **Declared global discount** — `payments.global_discount_amount`, set by user at top of payment wizard.
 2. **Ad-hoc per-invoice write-off** — sum of `payment_allocations.discount_amount` minus the global portion.
 
-Runtime split (in `save_payment_with_allocations`, payments.sql:577-590):
+Runtime split (in `save_payment_with_allocations`):
 - `distributed_from_global = LEAST(total_discount, global_discount)`
 - `adhoc_discount_amount   = GREATEST(total_discount - LEAST(...), 0)`
-- Both written to `payment_audit_log.snapshot` for observability.
+- `undistributed_global_discount = GREATEST(global_discount - distributed_from_global, 0)`
+- `auto_distributed_global_discount` records only server-filled zero candidates.
+- All written to `payment_audit_log.snapshot` for observability.
+
+2026-05-06 cap-and-preserve update: client no longer resets `globalDiscount`
+when no allocation consumes it. `PaymentAllocationDiscountSource.autoGlobalPreview`
+and `serverCandidate` rows serialize as `discount_amount: 0` plus
+`discount_candidate: true`; the RPC locks invoices in `invoice_id ASC`, fills
+only available capacity, skips still-zero candidates, clears auto-row
+`discount_reason`, and preserves leftover on `payments.global_discount_amount`.
+Manual/persisted allocation discounts are authoritative and can create ad-hoc
+excess.
 
 Phase 0 (000432, shipped 2026-04-28): F1 (`SUM(discount) <= global_discount`) DROPPED. Cross-invoice gate matches Flutter Fix C in `record_payment_state.dart:330-348` ("per-invoice over-allocation is the sole discount invariant").
 
@@ -19,4 +30,4 @@ Phase 0 (000432, shipped 2026-04-28): F1 (`SUM(discount) <= global_discount`) DR
 
 **Why:** When designing payment-related migrations, remember party/FY balance is computed from `payments.amount + global_discount_amount` directly, NOT from a SUM over `payment_allocations`. Don't assume the trigger will catch ad-hoc reductions — it won't until 000434 ships.
 
-**How to apply:** When working on payment_save_pipeline in Flutter, do NOT aggregate per-invoice discounts into `payment.global_discount_amount` — that destroys the audit-distinct split. Send `state.globalDiscount` as-is; the server reconstructs the split via the runtime LEAST/GREATEST formula.
+**How to apply:** When working on payment_save_pipeline in Flutter, do NOT aggregate per-invoice discounts into `payment.global_discount_amount` — that destroys the audit-distinct split. Send `state.globalDiscount` as-is; preview/global candidate rows must be zero-valued candidates so the server reconstructs the split via the runtime LEAST/GREATEST formula and locked invoice capacity.
